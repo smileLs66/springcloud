@@ -1,0 +1,15 @@
+server:
+  port: 8050
+spring:
+  application:
+    name: gateway-zuul
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://user:password123@localhost:8761/eureka
+zuul:
+  ignoredServices: '*'
+  routes:
+    app-yd-user-consumer:
+      path: /yd/**
+      serviceId: yd-user-consumer
