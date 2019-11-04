@@ -5,6 +5,7 @@ import javax.sql.DataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.security.oauth2.config.annotation.configurers.ClientDetailsServiceConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.AuthorizationServerConfigurerAdapter;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableAuthorizationServer;
@@ -12,6 +13,7 @@ import org.springframework.security.oauth2.config.annotation.web.configurers.Aut
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerSecurityConfigurer;
 import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenConverter;
 import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
+import org.springframework.security.oauth2.provider.token.store.KeyStoreKeyFactory;
 
 /**
  * Created by ls on 2019/6/16.
@@ -55,11 +57,20 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
     return new JwtTokenStore(jwtAccessTokenConverter());
   }
 
-  @Bean
+/*@Bean
   public JwtAccessTokenConverter jwtAccessTokenConverter() {
     JwtAccessTokenConverter jwtAccessTokenConverter = new JwtAccessTokenConverter();
     jwtAccessTokenConverter.setSigningKey("cjs");   //  Sets the JWT signing key
     return jwtAccessTokenConverter;
+  }*/
+
+  @Bean
+  protected JwtAccessTokenConverter jwtAccessTokenConverter() {
+    KeyStoreKeyFactory keyStoreKeyFactory = new KeyStoreKeyFactory(new ClassPathResource("jwt.jks"), "mySecretKey".toCharArray());
+    JwtAccessTokenConverter converter = new JwtAccessTokenConverter();
+    converter.setKeyPair(keyStoreKeyFactory.getKeyPair("jwt"));
+    return converter;
   }
+
 }
 
