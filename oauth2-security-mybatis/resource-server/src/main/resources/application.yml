@@ -11,18 +11,21 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://127.0.0.1:3306/oauth2?serverTimezone=GMT%2B8
     username: root
-    password: 123456
+    password: ls123
+  redis:
+    host: 192.168.221.136
+    port: 7000
 mybatis:
   mapUnderscoreToCamelCase: true
-  typeAliasesPackage: com.ls.pojo
+  typeAliasesPackage: com.sz566.resource.pojo
   mapperLocations: classpath:mappers/*.xml
 mybatis-plus:
   map-underscore-to-camel-case: true
   mapper-locations: classpath:mappers/*.xml
-  type-aliases-package: com.ls.pojo
+  type-aliases-package: com.sz566.resource.pojo
 logging:
   level:
-    com.ls.mapper: debug
+    com.sz566.resource.mapper: debug
 
 security:
   oauth2:
