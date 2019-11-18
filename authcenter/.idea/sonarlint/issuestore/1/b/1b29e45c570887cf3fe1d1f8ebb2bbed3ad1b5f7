@@ -1,0 +1,5 @@
+
+€squid:S14886"bImmediately return this expression instead of assigning it to the temporary variable "redisToken".(Ôß»¿8…Òôèæ-
+isquid:CommentedOutCodeLine/"<This block of commented-out lines of code should be removed.(ŠÆì8õ²ôèæ-
+vsquid:S3305("XInject this field value directly into "jdbcClientDetails", the only method that uses it.(â–ŠĞ8õ²ôèæ-
+tsquid:S3305,"QInject this field value directly into "tokenStore", the only method that uses it.(ûÁı‘şÿÿÿÿ8…Òôèæ-
