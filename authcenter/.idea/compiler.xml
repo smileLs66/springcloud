@@ -13,7 +13,7 @@
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="auth-server" target="1.8" />
-      <module name="doc" target="1.5" />
+      <module name="doc" target="1.8" />
       <module name="resource-server" target="1.8" />
     </bytecodeTargetLevel>
   </component>
