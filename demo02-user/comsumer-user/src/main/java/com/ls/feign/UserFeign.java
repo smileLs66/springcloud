@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import java.util.List;
 
 @FeignClient("yd-user")	//指向访问的提供者
+
 public interface UserFeign {
     @GetMapping("/user/find")
      List<User> find();
