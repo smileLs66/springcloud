@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ls.pay.mapper.TbPayMapper">
+  <resultMap id="BaseResultMap" type="com.ls.pay.pojo.TbPay">
+    <result column="pay_id" jdbcType="INTEGER" property="payId" />
+    <result column="order_id" jdbcType="INTEGER" property="orderId" />
+    <result column="payment" jdbcType="BIGINT" property="payment" />
+    <result column="payment_type" jdbcType="INTEGER" property="paymentType" />
+    <result column="post_fee" jdbcType="BIGINT" property="postFee" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="payment_time" jdbcType="TIMESTAMP" property="paymentTime" />
+  </resultMap>
+  <insert id="insert" parameterType="com.ls.pay.pojo.TbPay">
+    insert into tb_pay (pay_id, order_id, payment, 
+      payment_type, post_fee, status, 
+      payment_time)
+    values (#{payId,jdbcType=INTEGER}, #{orderId,jdbcType=INTEGER}, #{payment,jdbcType=BIGINT}, 
+      #{paymentType,jdbcType=INTEGER}, #{postFee,jdbcType=BIGINT}, #{status,jdbcType=INTEGER}, 
+      #{paymentTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ls.pay.pojo.TbPay">
+    insert into tb_pay
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="payId != null">
+        pay_id,
+      </if>
+      <if test="orderId != null">
+        order_id,
+      </if>
+      <if test="payment != null">
+        payment,
+      </if>
+      <if test="paymentType != null">
+        payment_type,
+      </if>
+      <if test="postFee != null">
+        post_fee,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="paymentTime != null">
+        payment_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="payId != null">
+        #{payId,jdbcType=INTEGER},
+      </if>
+      <if test="orderId != null">
+        #{orderId,jdbcType=INTEGER},
+      </if>
+      <if test="payment != null">
+        #{payment,jdbcType=BIGINT},
+      </if>
+      <if test="paymentType != null">
+        #{paymentType,jdbcType=INTEGER},
+      </if>
+      <if test="postFee != null">
+        #{postFee,jdbcType=BIGINT},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="paymentTime != null">
+        #{paymentTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+</mapper>
