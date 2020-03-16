@@ -35,13 +35,14 @@ proguard/
 captures/
   
 # Intellij
+target
 *.mvn
 mvnw
 *.cmd
 *.iml
 */*.iml
-target
 *.gitignore
+  
 # Keystore files
 #*.jks
 #gradle wrapper
@@ -53,4 +54,3 @@ gradle/
 .DS_Store
 */.idea/
 .idea/
-
