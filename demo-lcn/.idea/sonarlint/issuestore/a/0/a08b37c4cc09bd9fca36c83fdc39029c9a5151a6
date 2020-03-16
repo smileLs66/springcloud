@@ -1,8 +1,0 @@
-
-Hsquid:S5411"*Use the primitive boolean expression here.(Ë¿à8˜ĞÂğ.
-Msquid:S5411""*Use the primitive boolean expression here.(ªêÚüÿÿÿÿ8˜ĞÂğ.
-[
-squid:S106"9Replace this use of System.out or System.err by a logger.(Öß´ºùÿÿÿÿ8˜ĞÂğ.
-[
-squid:S106 "9Replace this use of System.out or System.err by a logger.(Öß´ºùÿÿÿÿ8˜ĞÂğ.
-dsquid:S1126""AReplace this if-then-else statement by a single return statement.(ªêÚüÿÿÿÿ8˜ĞÂğ.
