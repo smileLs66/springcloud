@@ -41,6 +41,7 @@ mvnw
 *.iml
 */*.iml
 target
+*.gitignore
 # Keystore files
 #*.jks
 #gradle wrapper
