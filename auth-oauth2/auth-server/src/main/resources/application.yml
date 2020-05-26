@@ -11,7 +11,7 @@ spring:
     username: root
     password: ls123
   redis:
-    host: 192.168.221.138
+    host: 192.168.221.136
     port: 7000
 mybatis:
   mapUnderscoreToCamelCase: true
@@ -23,4 +23,4 @@ mybatis-plus:
     type-aliases-package: com.ls.auth.pojo
 logging:
   level:
-    com.sz566.auth.mapper: debug
+    com.ls.auth.mapper: debug

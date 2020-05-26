@@ -13,6 +13,8 @@ import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.oauth2.common.exceptions.OAuth2Exception;
 import org.springframework.security.oauth2.config.annotation.configurers.ClientDetailsServiceConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.AuthorizationServerConfigurerAdapter;
@@ -43,23 +45,27 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
     private AuthenticationManager authenticationManager;
     @Autowired
     private RedisConnectionFactory redisConnectionFactory;
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
-   /* @Bean
-      public TokenStore tokenStore() {
-          // 基于 JDBC 实现，令牌保存到数据库
-          return new JdbcTokenStore(dataSource);
-      }*/
     //令牌保存到Redis*/
     @Bean
     public TokenStore tokenStore() {
         RedisTokenStore redisToken = new RedisTokenStore(redisConnectionFactory);
         return redisToken;
     }
-    @Bean
+    /* @Bean
+       public TokenStore tokenStore() {
+           // 基于 JDBC 实现，令牌保存到数据库
+           return new JdbcTokenStore(dataSource);
+       }*/
+/*    @Bean
     public ClientDetailsService jdbcClientDetails() {
         // 基于 JDBC 实现，需要事先在数据库配置客户端信息
         return new JdbcClientDetailsService(dataSource);
-    }
+    }*/
+
+    //MD5盐值加密
 
     /**
      * 在此处定义认证管理，即系统或者集群中的用户以及 Token的存儲方式, 定义授权、token终端、token服务
@@ -106,9 +112,23 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
 
     @Override
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
-        // 读取客户端配置
-        clients.withClientDetails(jdbcClientDetails());
+        //TODO：可改为从数据库中维护客户端接入信息，以便第三方接入
+        // clients.withClientDetails(jdbcClientDetails());
+
+        clients.inMemory()
+            //client_id  必填
+            .withClient("client")
+            .secret(passwordEncoder.encode("secret"))
+            //允许的授权范围，如果为空，则不限制范围
+            .scopes("all")
+            //该client允许的授权类型,默认为空
+            .authorizedGrantTypes("implicit", "password", "refresh_token", "authorization_code")
+            //.resourceIds("ls_web")
+            //会掉地址
+            .redirectUris("https://blog.csdn.net/qq_40198004")
+            .autoApprove(true);
     }
+
     @Override
     public void configure(AuthorizationServerSecurityConfigurer oauthServer) throws Exception {
 
@@ -118,7 +138,6 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
         //允许 check_token 访问
         oauthServer.checkTokenAccess("permitAll()");
     }
-
 
 
 }
