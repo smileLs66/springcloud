@@ -29,7 +29,7 @@
     <swagger2.version>2.7.0</swagger2.version>
     <commons-lang3.version>3.7</commons-lang3.version>
     <google-guava.version>20.0</google-guava.version>
-    <commons-collections.version>3.2</commons-collections.version>
+    <commons-collections.version>3.2.2</commons-collections.version>
     <fastjson.version>1.2.60</fastjson.version>
     <spring-web.version>5.1.6.RELEASE</spring-web.version>
     <javax.servlet-api.version>4.0.0</javax.servlet-api.version>
